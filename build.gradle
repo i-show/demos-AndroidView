@@ -1,0 +1,89 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+/**
+ * 生成版本的时间
+ */
+static def releaseTime() {
+    return new Date().format("yyyy_MMdd")
+}
+
+/**
+ * 生成VersionCode
+ */
+@SuppressWarnings("unused")
+static def generateVersionCode() {
+    return new Date().format("yyyyMMdd")
+}
+
+/**
+ *  重命名Apk的方法
+ */
+@SuppressWarnings(["GrMethodMayBeStatic", "unused"])
+def renameAPK(android, variant, output) {
+    def flavor = variant.productFlavors[0]
+    def flavorName
+    def versionName
+
+    if (flavor == null) {
+        flavorName = ""
+        versionName = android.defaultConfig.versionName
+    } else {
+        versionName = flavor.versionName
+        flavorName = flavor.name
+    }
+
+    if (versionName == null || versionName.toString() == "null") {
+        versionName = variant.versionName
+    }
+
+    if (versionName == null || versionName.toString() == "null") {
+        versionName = ""
+    }
+
+    def versionNameSuffix = variant.buildType.versionNameSuffix
+    if (versionNameSuffix.toString() == "null") {
+        versionNameSuffix = ""
+    }
+
+    def buildTypeName = variant.buildType.name
+
+    if (buildTypeName == "debug") {
+        buildTypeName = "dev"
+    } else if (buildTypeName == "release") {
+        buildTypeName = "prod"
+    }
+
+    if (flavorName == "" || flavorName == "null") {
+        output.outputFileName = "${APK_PREFIX}_${buildTypeName}_v${versionName}${versionNameSuffix}_${releaseTime()}.apk"
+    } else {
+        output.outputFileName = "${APK_PREFIX}_${buildTypeName}_${flavorName}_v${versionName}${versionNameSuffix}_${releaseTime()}.apk"
+    }
+}
+
