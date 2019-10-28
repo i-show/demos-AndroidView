@@ -61,15 +61,14 @@ class TestTouchViewGroup @JvmOverloads constructor(
 
     override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
         TouchUtils.log(TAG_CLASS, "onInterceptTouchEvent:", event)
-
         return when (interceptStatus) {
             TouchStatus.OnlySuper -> super.onInterceptTouchEvent(event)
             TouchStatus.RunSuperTrue -> {
-                super.onTouchEvent(event)
+                super.onInterceptTouchEvent(event)
                 true
             }
             TouchStatus.RunSuperFalse -> {
-                super.onTouchEvent(event)
+                super.onInterceptTouchEvent(event)
                 false
             }
             TouchStatus.NoSuperTrue -> true

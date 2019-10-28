@@ -1,6 +1,7 @@
 package com.ishow.noah.modules.touch
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -55,14 +56,16 @@ class ViewTouchViewModel(app: Application) : AppBaseViewModel(app) {
 
 
     fun setCurrentType(v: View, data: TouchPickerData) {
+        val type = data.type
+
         when (v.id) {
-            R.id.activityDispatch -> _activityDispatch.value = data.type
-            R.id.activityTouch -> _activityTouch.value = data.type
-            R.id.viewGroupDispatch -> _groupDispatch.value = data.type
-            R.id.viewGroupTouch -> _groupTouch.value = data.type
-            R.id.viewGroupInterceptTouch -> _groupIntercept.value = data.type
-            R.id.viewDispatch -> _viewDispatch.value = data.type
-            R.id.viewTouch -> _viewTouch.value = data.type
+            R.id.activityDispatch -> _activityDispatch.value = type
+            R.id.activityTouch -> _activityTouch.value = type
+            R.id.viewGroupDispatch -> _groupDispatch.value = type
+            R.id.viewGroupTouch -> _groupTouch.value = type
+            R.id.viewGroupInterceptTouch -> _groupIntercept.value = type
+            R.id.viewDispatch -> _viewDispatch.value = type
+            R.id.viewTouch -> _viewTouch.value = type
         }
     }
 }

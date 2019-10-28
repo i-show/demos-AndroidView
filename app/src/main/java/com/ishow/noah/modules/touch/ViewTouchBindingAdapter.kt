@@ -16,7 +16,7 @@ object ViewTouchBindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["bindDispatchTouchStatus", "bindTouchStatus", "bindInterceptStatus"])
+    @BindingAdapter(value = ["bindDispatchTouchStatus", "bindInterceptStatus", "bindTouchStatus"])
     fun bindTouchStatus(
         view: TestTouchViewGroup,
         dispatch: TouchStatus,

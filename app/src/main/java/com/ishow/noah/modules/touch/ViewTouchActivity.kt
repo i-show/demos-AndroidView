@@ -43,7 +43,7 @@ class ViewTouchActivity : AppBindActivity<AViewTouchBinding, ViewTouchViewModel>
             MotionEvent.ACTION_DOWN -> Log.i(TAG, "============================")
         }
 
-        TouchUtils.log(TAG_CLASS, "onTouchEvent:", event)
+        TouchUtils.log(TAG_CLASS, "dispatchTouchEvent:", event)
         return when (dispatchStatus) {
             TouchStatus.OnlySuper -> super.dispatchTouchEvent(event)
             TouchStatus.RunSuperTrue -> {
