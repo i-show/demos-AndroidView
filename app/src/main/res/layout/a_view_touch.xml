@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ishow.noah.modules.touch.ViewTouchViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <com.ishow.common.widget.TopBar
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="@string/view_touch_sample" />
+
+        <TextView
+            style="@style/AppTextView.TouchView.Header"
+            android:text="Activity" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/activityDispatch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.activityDispatch}"
+                app:leftText="DISPATCH:" />
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/activityTouch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.activityTouch}"
+                app:leftText="TOUCH:" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/AppTextView.TouchView.Header"
+            android:text="ViewGroup" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/viewGroupDispatch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.groupDispatch}"
+                app:leftText="DISPATCH:" />
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/viewGroupTouch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.groupTouch}"
+                app:leftText="TOUCH:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/viewGroupInterceptTouch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.groupIntercept}"
+                android:layout_width="match_parent"
+                app:leftText="INTERCEPT:" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/AppTextView.TouchView.Header"
+            android:text="View" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/viewDispatch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.viewDispatch}"
+                app:leftText="DISPATCH:" />
+
+            <com.ishow.common.widget.textview.TextViewPro
+                android:id="@+id/viewTouch"
+                style="@style/AppTextViewPro.TouchView.Item"
+                bindTouchStatus="@{vm.viewTouch}"
+                app:leftText="TOUCH:" />
+        </LinearLayout>
+
+        <com.ishow.noah.modules.touch.TestTouchViewGroup
+            android:id="@+id/touchViewGroup"
+            bindDispatchTouchStatus="@{vm.groupDispatch}"
+            bindInterceptStatus="@{vm.groupIntercept}"
+            bindTouchStatus="@{vm.groupTouch}"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <com.ishow.noah.modules.touch.TestTouchView
+                android:id="@+id/touchView"
+                bindDispatchTouchStatus="@{vm.viewDispatch}"
+                bindTouchStatus="@{vm.viewTouch}"
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+        </com.ishow.noah.modules.touch.TestTouchViewGroup>
+
+    </LinearLayout>
+</layout>

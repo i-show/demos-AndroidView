@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">demo-AndroidView</string>
+    <string name="view_touch_sample">ViewTouch</string>
 </resources>
